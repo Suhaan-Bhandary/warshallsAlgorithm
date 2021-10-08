@@ -16,7 +16,7 @@ const refreshTable = () => {
 };
 
 const rerenderWindow = () => {
-  let elements = document.getElementById("elementsCount").value;
+  let elementsCount = document.getElementById("elementsCount").value;
   let table = document.createElement("table");
 
   // Adding Index
@@ -24,7 +24,7 @@ const rerenderWindow = () => {
   let cell = document.createElement("td");
   cell.classList.add("helperValues");
   helperRow.appendChild(cell);
-  for (let i = 0; i < elements; i++) {
+  for (let i = 0; i < elementsCount; i++) {
     let cell = document.createElement("td");
     cell.classList.add("helperValues");
     cell.innerText = i;
@@ -32,7 +32,7 @@ const rerenderWindow = () => {
   }
   table.appendChild(helperRow);
 
-  for (let i = 0; i < elements; i++) {
+  for (let i = 0; i < elementsCount; i++) {
     let row = document.createElement("tr");
 
     // Adding the helper
@@ -41,7 +41,7 @@ const rerenderWindow = () => {
     cell.innerText = i;
     row.appendChild(cell);
 
-    for (let j = 0; j < elements; j++) {
+    for (let j = 0; j < elementsCount; j++) {
       // Creating cell and assigning default values
       let cols = document.createElement("td");
       cols.id = getCellId(i, j);
@@ -63,17 +63,17 @@ const rerenderWindow = () => {
   tableContainer.appendChild(table);
 };
 
-const getAnswer = () => {
-  let elements = document.getElementById("elementsCount").value;
-  if(elements < 1) return;
-  
-  console.log(elements);
+const getTransitiveClouser = () => {
+  let elementsCount = document.getElementById("elementsCount").value;
+  if (elementsCount < 1) return;
+
+  console.log(elementsCount);
   let answerString = "Transitive Closure: ";
-  for (let k = 0; k < elements; k++) {
-    for (let i = 0; i < elements; i++) {
-      if (getCellValue(i,k) == 1) {
-        for (let j = 0; j < elements; j++) {
-          if (getCellValue(k,j) == 1 && getCellValue(i, j) != 1) {
+  for (let k = 0; k < elementsCount; k++) {
+    for (let i = 0; i < elementsCount; i++) {
+      if (getCellValue(i, k) == 1) {
+        for (let j = 0; j < elementsCount; j++) {
+          if (getCellValue(k, j) == 1 && getCellValue(i, j) != 1) {
             setCellValue(i, j, 1);
             answerString += "(" + i + "," + j + ") ";
           }
@@ -83,6 +83,61 @@ const getAnswer = () => {
   }
 
   document.getElementById("answer").innerText = answerString;
+};
+
+const getReflexiveClouser = () => {
+  let elementsCount = document.getElementById("elementsCount").value;
+  if (elementsCount < 1) return;
+
+  let answerString = "Reflexive Closure: ";
+
+  for (let i = 0; i < elementsCount; i++) {
+    if (getCellValue(i, i) != 1) {
+      setCellValue(i, i, 1);
+      answerString += "(" + i + "," + i + ") ";
+    }
+  }
+
+  document.getElementById("answer").innerText = answerString;
+};
+
+const getSymmetricClouser = () => {
+  let elementsCount = document.getElementById("elementsCount").value;
+  if (elementsCount < 1) return;
+
+  let answerString = "Symmetric Closure: ";
+
+  for (let i = 0; i < elementsCount; i++) {
+    for (let j = 0; j < elementsCount; j++) {
+      if (i != j && getCellValue(i, j) == 1 && getCellValue(j, i) != 1) {
+        setCellValue(j, i, 1);
+        answerString += "(" + j + "," + i + ") ";
+      }
+    }
+  }
+
+  document.getElementById("answer").innerText = answerString;
+};
+
+const getAnswer = () => {
+  let selectedChoice = document.getElementById("choice");
+  let choice = selectedChoice.options[selectedChoice.selectedIndex].value;
+
+  console.log(choice);
+
+  switch (choice) {
+    case "transitive":
+      getTransitiveClouser();
+      break;
+    case "reflexive":
+      getReflexiveClouser();
+      break;
+    case "symmetric":
+      getSymmetricClouser();
+      break;
+    default:
+      console.log("Unkown Choice!");
+  }
 };
 
 const tableContainer = document.getElementById("tableContainer");
