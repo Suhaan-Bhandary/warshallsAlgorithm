@@ -71,9 +71,9 @@ const getAnswer = () => {
   let answerString = "Transitive Closure: ";
   for (let k = 0; k < elements; k++) {
     for (let i = 0; i < elements; i++) {
-      if (getCellValue(k, i) == 1) {
+      if (getCellValue(i,k) == 1) {
         for (let j = 0; j < elements; j++) {
-          if (getCellValue(j, k) == 1 && getCellValue(i, j) != 1) {
+          if (getCellValue(k,j) == 1 && getCellValue(i, j) != 1) {
             setCellValue(i, j, 1);
             answerString += "(" + i + "," + j + ") ";
           }
