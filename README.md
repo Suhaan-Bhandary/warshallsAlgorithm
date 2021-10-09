@@ -31,7 +31,7 @@ View using Chrome Extension
 
 
 ## 🚀 About Me
-I'm a full stack developer and a Second Year student at K. K. Wagh Institute Of Engineering Education And Research...
+Second Year student at K. K. Wagh Institute Of Engineering Education And Research...
 
   
 ## 🔗 Links
