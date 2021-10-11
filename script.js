@@ -27,7 +27,7 @@ const rerenderWindow = () => {
   for (let i = 0; i < elementsCount; i++) {
     let cell = document.createElement("td");
     cell.classList.add("helperValues");
-    cell.innerText = i;
+    cell.innerText = i+1;
     helperRow.appendChild(cell);
   }
   table.appendChild(helperRow);
@@ -38,7 +38,7 @@ const rerenderWindow = () => {
     // Adding the helper
     let cell = document.createElement("td");
     cell.classList.add("helperValues");
-    cell.innerText = i;
+    cell.innerText = i+1;
     row.appendChild(cell);
 
     for (let j = 0; j < elementsCount; j++) {
