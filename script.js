@@ -75,7 +75,7 @@ const getTransitiveClouser = () => {
         for (let j = 0; j < elementsCount; j++) {
           if (getCellValue(k, j) == 1 && getCellValue(i, j) != 1) {
             setCellValue(i, j, 1);
-            answerString += "(" + i + "," + j + ") ";
+            answerString += "(" + (i + 1) + "," + (j + 1) + ") ";
           }
         }
       }
@@ -94,7 +94,7 @@ const getReflexiveClouser = () => {
   for (let i = 0; i < elementsCount; i++) {
     if (getCellValue(i, i) != 1) {
       setCellValue(i, i, 1);
-      answerString += "(" + i + "," + i + ") ";
+      answerString += "(" + (i + 1) + "," + (i + 1) + ") ";
     }
   }
 
@@ -111,7 +111,7 @@ const getSymmetricClouser = () => {
     for (let j = 0; j < elementsCount; j++) {
       if (i != j && getCellValue(i, j) == 1 && getCellValue(j, i) != 1) {
         setCellValue(j, i, 1);
-        answerString += "(" + j + "," + i + ") ";
+        answerString += "(" + (j + 1) + "," + (i + 1) + ") ";
       }
     }
   }
